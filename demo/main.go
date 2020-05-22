@@ -5,7 +5,9 @@ import (
 	"DesignMode/demo/Bridge"
 	"DesignMode/demo/Builder"
 	"DesignMode/demo/Composite"
+	"DesignMode/demo/Deacorater"
 	"DesignMode/demo/Factory"
+	"DesignMode/demo/FlyWeight"
 	"fmt"
 )
 
@@ -61,7 +63,7 @@ func main44() {
 	root.Print("")
 }
 
-func main()  {
+func main55()  {
 	//m:=Bridge.NewComonMessage(Bridge.ViaSMS())
 	//m:=Bridge.NewComonMessage(Bridge.ViaEmail())
 	//m.SendMessage("baBy 你好","nimei")
@@ -69,4 +71,24 @@ func main()  {
 	//m := Bridge.NewUrencyMessage(Bridge.ViaEmail())
 	m := Bridge.NewUrencyMessage(Bridge.ViaSMS())
 	m.SendMessage("baby 你好", "nimei")
+}
+
+func main66() {
+	var c Deacorater.Component = &Deacorater.ConcreateComponent{}
+	c = Deacorater.WarpMulComponent(c, 10)
+	fmt.Println(c.Calc())
+}
+
+func main() {
+	v1 := FlyWeight.NewImageViewer("1.jpg")
+	v1.Display()
+	v2 := FlyWeight.NewImageViewer("1.jpg")
+	v2.Display()
+
+	if v1.ImageFlyWeight == v2.ImageFlyWeight {
+		fmt.Println("节约内存")
+	} else {
+		fmt.Println("浪费内存")
+	}
+
 }
